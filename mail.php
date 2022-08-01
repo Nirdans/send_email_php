@@ -1,13 +1,9 @@
-                              <?php        
+                     <?php        
                                //envoyer mail de confirmation client
 
-//$cli_mail est la variable qui vous a permis de recuperer le mail de l'interesser à qui vous souhaité envoyé un mail
-        
-                               
-
-
+                             //$cli_mail est la variable qui vous a permis de recuperer le mail de l'interesser à qui vous souhaité envoyé un mail
                                 $header="MIME-Version: 1.0\r\n";
-                                $header.='From:"Programme 1000 milliardaire || cashyinvestments SARL"<contact@cashyinvestments.com>'."\n";
+                                $header.='From:"AMANOU-TECH || Freelance Plateforme"<contact@amanou-tech.com>'."\n";
                                 $header.='Content-Type:text/html; charset="uft-8"'."\n";
                                 $header.='Content-Transfer-Encoding: 8bit';
                                 $message='
@@ -15,20 +11,28 @@
                                 <body>
                               <div align="center">
                                 <p>
-                                '..'
-                                Félicitation pour votre insription dans ce programme, qui non seulement vous permettra d\'avoir des gains en fonction des niveaux mais également d\'être actionnaire à 0.01% dans cashyinvestment au bout de 3 ans.
                                
-                                </p>
-                                        <p>L\'équipe vous remercie</p><br/>
-                                        <p>Admin cashy investments SARL</p><br/>
+                                 <span>'.$_SESSION['nom'].' '.$_SESSION['prenom'].'<span> votre compte  a été désactivé.</p>
+                                 <br/><h5>MOTIF:</h5>
+                                 <p>'.$_POST['motif'].'</p>
+                               
+                                
+                                        <p>Cordialement L\'équipe AMANOU-TECH</p><br/>
+                                        
                                     </div>
                                 </body>
                                 </html>
                                 ';
-                                if ( mail($cli_mail, "CONFIRMATION DE COMPTE ACTIVER", $message, $header) ) {
-                                    # code...
+                                if ( mail($_SESSION['emails'], "COMPTE DESACTIVER", $message, $header) ) {
+                                    echo "<script>alert(\"Mail de Désactivation envoyé avec succès.\")</script>";
+                                    $produit_valider= $sql-> collaborator_valider(0,$_SESSION['slug']);
+                                    if ($produit_valider) {
+                                        echo "<script>alert(\"Collaborateur Désactiver .\")</script>";  
+                                        echo '<script>window.location.href="gestion_collaborator.php"</script>';       
+                                    }  
 
                                 }else {
-                                    # code...
+                                    echo "<script>alert(\"Mail de Désactivation non envoyé Veuillez Contactez Votre Technicien Informatique.\")</script>";
                                 }
+                                ?>
                                 ?>
