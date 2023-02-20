@@ -1,5 +1,9 @@
                      <?php        
                                //envoyer mail de confirmation client
+                          $_SESSION [ 'email' ]="youremail@email.com";
+                          $_SESSION['nom'] = "Your Name";
+                          $_SESSION['prenom'] = "Tour last name";
+                          //$_POST['motif']= 'the text of body ';
 
                              //$SESION['email'] est la variable qui vous a permis de recuperer le mail de l'interesser à qui vous souhaité envoyé un mail
                                 $header="MIME-Version: 1.0\r\n";
